@@ -166,6 +166,42 @@ int main(){
 
 ```
 
+<hr>
+
+Nth Catalan Number
+
+Problem - https://practice.geeksforgeeks.org/problems/nth-catalan-number/0
+
+```
+#include<bits/stdc++.h>
+using namespace std;
+#include <boost/multiprecision/cpp_int.hpp> 
+using boost::multiprecision::cpp_int; 
+
+vector < cpp_int > dp(105);
+
+cpp_int func(int n){
+    if(n == 0 || n == 1)  return 1;
+    if(dp[n] != 0) return dp[n];
+    cpp_int res = 0;
+    for(int i = 0; i < n; i++){
+        res += func(i) * func(n-i-1);
+    }
+    return dp[n] = res;
+}
+
+signed main(){
+    int tt, n;
+    cin >> tt;
+    while(tt--){
+        cin >> n;
+        cpp_int ans = func(n);
+        cout << ans << endl;
+    }
+    return 0;
+}
+```
+
 
 
 
