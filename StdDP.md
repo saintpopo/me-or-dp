@@ -202,6 +202,35 @@ signed main(){
 }
 ```
 
+### Maximize the Cut Segments
 
+#### Problem - https://practice.geeksforgeeks.org/problems/cutted-segments/0
+
+```
+#include<bits/stdc++.h>
+using namespace std;
+
+int n, a, b, c;
+
+int dp[100005];
+
+int func(int n){
+    if(n < 0)   return INT_MIN;
+    if(n == 0)  return 0;
+    if(dp[n] != -1) return dp[n];
+    return dp[n] = 1 + max(func(n-a), max(func(n-b), func(n-c)));
+}
+
+int main(){
+    int tt;
+    cin >> tt;
+    while(tt--){
+        memset(dp, -1 ,sizeof(dp));
+        cin >> n >> a >> b >> c;
+        cout << func(n) << endl;
+    }
+    return 0;
+}
+```
 
 
