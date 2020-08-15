@@ -119,7 +119,7 @@ signed main(){
     return 0;
 }
 ```
-
+<hr>
 ### Subset Sum Problem
 
 #### Problem - https://practice.geeksforgeeks.org/problems/subset-sum-problem/0
@@ -201,7 +201,7 @@ signed main(){
     return 0;
 }
 ```
-
+<hr>
 ### Maximize the Cut Segments
 
 #### Problem - https://practice.geeksforgeeks.org/problems/cutted-segments/0
@@ -232,6 +232,7 @@ int main(){
     return 0;
 }
 ```
+<hr>
 
 ### Longest Common Subsequence
 
