@@ -42,3 +42,51 @@ int main(){
 ```
 
 <hr>
+
+
+### Gold Mine Problem
+
+####  Problem - https://practice.geeksforgeeks.org/problems/gold-mine-problem/0
+
+```
+#include<bits/stdc++.h>
+using namespace std;
+
+int n, m;
+int a[25][25], dp[25][25];
+
+bool issafe(int x, int y){
+    return (x >= 0 && y >= 0 && x < n && y < m);
+}
+
+int func(int x, int y){
+    if(!issafe(x, y))   return 0;
+    if(dp[x][y] != -1)  return dp[x][y];
+    if(y == m-1)    return a[x][m-1];
+    return dp[x][y] = a[x][y] + max(func(x+1, y+1), max(func(x-1, y+1), func(x, y+1)));
+}
+
+int main(){
+    int tt;
+    cin >> tt;
+    while(tt--){
+        memset(dp, -1, sizeof(dp));
+        cin >> n >> m;
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < m; j++){
+                cin >> a[i][j];
+            }
+        }
+        int ans = 0;
+        for(int i = 0; i < n; i++){
+            ans = max(ans, func(i, 0));
+        }
+        cout << ans << endl;
+    }
+    
+    return 0;
+}
+```
+
+<hr>
+
