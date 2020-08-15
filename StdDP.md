@@ -383,3 +383,41 @@ int main(){
     return 0;
 }
 ```
+<hr>
+
+### Maximum sum increasing subsequence
+
+#### Problem - https://practice.geeksforgeeks.org/problems/maximum-sum-increasing-subsequence/0
+
+```
+#include<bits/stdc++.h>
+using namespace std;
+
+int dp[10005], a[10005];
+
+int main(){
+    int tt, n;
+    cin >> tt;
+    while(tt--){
+        cin >> n;
+        memset(dp, 0, sizeof(dp));
+        for(int i = 0; i < n; i++){
+            cin >> a[i];
+            dp[i] = a[i];
+        }
+        for(int i = 1; i < n; i++){
+            for(int j = 0; j < i; j++){
+                if(a[i] > a[j]){
+                    dp[i] = max(dp[i], dp[j]+a[i]);
+                }
+            }
+        }
+        int ans = 0;
+        for(int i = 0; i < n; i++){
+            ans = max(ans,dp[i]);
+        }
+        cout << ans << endl;
+    }
+    return 0;
+}
+```
