@@ -2,7 +2,7 @@
 
 <h2>The repository contains all the standard problems of dynamic programming.</h2>
 
-##  Problems
+##  Problems :
 
 ### Coin Change
 
@@ -341,6 +341,45 @@ int main(){
         }
         cout << ans << endl;
     }
+    return 0;
+}
+```
+
+### LCS of three strings
+
+#### Problem - https://practice.geeksforgeeks.org/problems/lcs-of-three-strings/0
+
+```
+using namespace std;
+#define ll long long int
+
+ll dp[101][101][101];
+
+ll func(string &a, string &b, string &c, ll n, ll m, ll k){
+    if(n == -1 || m == -1 || k == -1){
+        return 0;
+    }
+    if(dp[n][m][k] != -1){
+        return dp[n][m][k];
+    }
+    if(a[n] == b[m] && b[m] == c[k]){
+        return dp[n][m][k] =  1 + func(a, b, c, n-1, m-1, k-1);
+    }
+    else{
+        return dp[n][m][k] = max(func(a, b, c, n-1, m, k), max(func(a, b, c, n, m-1, k), func(a, b, c, n, m, k-1)));
+    }
+}
+int main(){
+    ll tt, n, m, k;
+    string a, b, c;
+    cin >> tt;
+    while(tt--){
+        memset(dp, -1, sizeof(dp));
+        cin >> n >> m >> k;
+        cin >> a >> b >> c;
+        cout << func(a, b, c, n-1, m-1, k-1) << endl;
+    }
+    
     return 0;
 }
 ```
