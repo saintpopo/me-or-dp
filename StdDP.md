@@ -421,3 +421,30 @@ int main(){
     return 0;
 }
 ```
+### Max length chain
+
+#### Problem - https://practice.geeksforgeeks.org/problems/max-length-chain/1
+
+```
+int dp[105];
+
+bool comp(struct val a, struct val b){
+    return a.first < b.first;
+}
+
+int maxChainLen(struct val p[],int n){
+    memset(dp, -1, sizeof(dp));
+    sort(p, p+n, comp);
+    for(int i = 0; i <= n; i++) dp[i] = 1;
+    for(int i = 1; i < n; i++){
+        for(int j = 0; j < i; j++){
+            if(p[i].first > p[j].second){
+                dp[i] = dp[j] + 1;
+            }
+        }
+    }
+    int ans = INT_MIN;
+    for(int i = 0; i < n; i++)  ans = max(ans, dp[i]);
+    return ans;
+}
+```
