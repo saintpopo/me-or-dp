@@ -304,3 +304,43 @@ int main(){
     return 0;
 }
 ```
+
+<hr>
+
+
+### Longest Increasing Subsequence
+
+#### Problem - 
+
+```
+#include<bits/stdc++.h>
+using namespace std;
+
+int dp[1005], a[1005];
+
+int main(){
+    int tt, n;
+    cin >> tt;
+    while(tt--){
+        cin >> n;
+        memset(dp, 0, sizeof(dp));
+        for(int i = 0; i < n; i++){
+            cin >> a[i];
+            dp[i] = 1;
+        }
+        for(int i = 1; i < n; i++){
+            for(int j = 0; j < i; j++){
+                if(a[i] > a[j]){
+                    dp[i] = max(dp[i], dp[j]+1);
+                }
+            }
+        }
+        int ans = 1;
+        for(int i = 0; i < n; i++){
+            ans = max(ans,dp[i]);
+        }
+        cout << ans << endl;
+    }
+    return 0;
+}
+```
