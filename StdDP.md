@@ -168,9 +168,9 @@ int main(){
 
 <hr>
 
-Nth Catalan Number
+### Nth Catalan Number
 
-Problem - https://practice.geeksforgeeks.org/problems/nth-catalan-number/0
+#### Problem - https://practice.geeksforgeeks.org/problems/nth-catalan-number/0
 
 ```
 #include<bits/stdc++.h>
