@@ -271,3 +271,36 @@ int main(){
 }
 ```
 
+<hr>
+
+### Longest Repeating Subsequence
+
+#### Problem - https://practice.geeksforgeeks.org/problems/longest-repeating-subsequence/0
+
+```
+#include<bits/stdc++.h>
+using namespace std;
+
+string a, b;
+int n;
+int dp[1001][1001];
+
+int func(int n, int m){
+    if(n == 0 || m == 0)    return 0;
+    if(dp[n][m] != -1)  return dp[n][m];
+    if(a[n-1] == b[m-1] && m != n)    return dp[n][m] = 1 + func(n-1, m-1);
+    return dp[n][m] = max(func(n-1, m), func(n, m-1));
+}
+
+int main(){
+    int tt;
+    cin >> tt;
+    while(tt--){
+        memset(dp, -1, sizeof(dp));
+        cin >> n >> a;
+        b = a;
+        cout << func(n, n) << endl;
+    }
+    return 0;
+}
+```
