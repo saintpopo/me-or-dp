@@ -2,3 +2,7 @@
 
 <h2>The repository contains all the standard problems of dynamic programming.</h2>
 
+<hr>
+
+### Coin Change
+
