@@ -120,7 +120,51 @@ signed main(){
 }
 ```
 
+### Subset Sum Problem
 
+#### Problem - https://practice.geeksforgeeks.org/problems/subset-sum-problem/0
+```
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int a[100005], dp[100005][101];
+
+int func(int s, int n){
+    if((n <= 0 && s != 0) || (s < 0)) return 0;
+    if(s == 0)  return 1;
+    if(dp[s][n] != -1)  return dp[s][n];
+    return dp[s][n] = func(s-a[n-1], n-1) || func(s, n-1);
+}
+
+int main(){
+    int tt, n;
+    cin >> tt;
+    while(tt--){
+        int s = 0;
+        memset(dp, -1, sizeof(dp));
+        cin >> n;
+        for(int i = 0; i < n; i++){
+            cin >> a[i];
+            s += a[i];
+        }
+        if(s%2 != 0){
+            cout << "NO\n";
+            continue;
+        }
+        s /= 2;
+        if(func(s, n)){
+            cout << "YES\n";
+        }
+        else{
+            cout << "NO\n";
+        }
+    }
+    
+    return 0;
+}
+
+```
 
 
 
