@@ -233,4 +233,37 @@ int main(){
 }
 ```
 
+### Longest Common Subsequence
+
+#### Problem - https://practice.geeksforgeeks.org/problems/longest-common-subsequence/0
+
+```
+#include<bits/stdc++.h>
+using namespace std;
+
+string s, t;
+int dp[105][105];
+
+int dfs(int m, int n){
+    if(m <= 0 || n <= 0){
+        return 0;
+    }
+    if(dp[m][n] != -1)  return dp[m][n];
+    if(s[m-1] == t[n-1])    return 1 + dfs(m-1, n-1);
+    return dp[m][n] = max(dfs(m-1, n), dfs(m, n-1));
+}
+
+int main(){
+    int tt;
+    cin >> tt;
+    while(tt--){
+        int m, n;
+        cin >> m >> n; 
+        cin >> s >> t;
+        memset(dp, -1, sizeof(dp));
+        cout << dfs(m, n) << endl;
+    }
+    return 0;
+}
+```
 
