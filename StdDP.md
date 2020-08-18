@@ -486,3 +486,42 @@ int main(){
     return 0;
 }
 ```
+
+### Taking 1 out of 3 consecutives
+
+#### Problem - https://practice.geeksforgeeks.org/problems/taking-1-out-of-3-consecutives/0/
+```
+#include<bits/stdc++.h>
+using namespace std;
+
+int dp[100005][3], a[100005];
+int n;
+
+int func(int idx, int c){
+    if(idx >= n) return 0;
+    if(dp[idx][c] != -1)    return dp[idx][c];
+    int ans = INT_MAX;
+    if(c == 2)  ans = min(ans, a[idx] + func(idx+1, 0));
+    else    ans = min(ans, min(a[idx] + func(idx+1, 0), func(idx+1, c+1)));
+    return dp[idx][c] = ans;
+    
+}
+
+int main(){
+    int tt;
+    cin >> tt;
+    while(tt--){
+        cin >> n;
+        for(int i = 0; i < n; i++)  cin >> a[i];
+        if(n <= 2){
+            if(n == 1)  cout << a[0] << endl;
+            else    cout << min(a[0], a[1]) << endl;
+            continue;
+        }
+        memset(dp, -1, sizeof(dp));
+        cout << func(0, 0) << endl;
+    }
+    
+    return 0;
+}
+```
