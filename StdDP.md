@@ -346,6 +346,7 @@ int main(){
 }
 ```
 <hr>
+
 ### LCS of three strings
 
 #### Problem - https://practice.geeksforgeeks.org/problems/lcs-of-three-strings/0
@@ -486,6 +487,8 @@ int main(){
     return 0;
 }
 ```
+<hr>
+
 
 ### Taking 1 out of 3 consecutives
 
