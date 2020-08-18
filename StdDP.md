@@ -449,3 +449,40 @@ int maxChainLen(struct val p[],int n){
     return ans;
 }
 ```
+
+<hr>
+
+### Maximum Calorie
+
+#### Problem - https://practice.geeksforgeeks.org/problems/maximum-calorie/0
+
+```
+#include<bits/stdc++.h>
+using namespace std;
+
+int dp[100005][3], a[100005];
+int n;
+
+int func(int idx, int c){
+    if(idx >= n) return 0;
+    if(dp[idx][c] != -1)    return dp[idx][c];
+    int ans = 0;
+    if(c == 2)  ans = max(ans, func(idx+1, 0));
+    else    ans = max(ans, max(a[idx] + func(idx+1, c+1), func(idx+1, 0)));
+    return dp[idx][c] = ans;
+    
+}
+
+int main(){
+    int tt;
+    cin >> tt;
+    while(tt--){
+        cin >> n;
+        for(int i = 0; i < n; i++)  cin >> a[i];
+        memset(dp, -1, sizeof(dp));
+        cout << func(0, 0) << endl;
+    }
+    
+    return 0;
+}
+```
