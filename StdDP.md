@@ -527,3 +527,32 @@ int main(){
     return 0;
 }
 ```
+
+### Count binary strings
+#### https://practice.geeksforgeeks.org/problems/count-binary-strings1944/1
+
+```
+int n, k;
+int dp[1005][2][1005];
+const int mod = 1000000007;
+
+class Solution
+{
+  public:
+    int func(int idx, int prev, int consecutive){
+        if(idx == n-1)    return consecutive == k;
+        int &x = dp[idx][prev][consecutive];
+        if(x != -1) return x;
+        if(prev)    x = (func(idx+1, 0, consecutive)%mod + func(idx+1, 1, consecutive+1)%mod)%mod;
+        else    x = (func(idx+1, 0, consecutive)%mod + func(idx+1, 1, consecutive)%mod)%mod;
+        return x;
+    }
+    int countStrings(int a, int b){
+        memset(dp, -1, sizeof(dp));
+        n = a, k = b;
+        int ans = (0LL + func(0, 0, 0) + func(0, 1, 0))%mod;
+        return ans;
+    }
+ 
+};
+```
