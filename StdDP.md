@@ -556,3 +556,26 @@ class Solution
  
 };
 ```
+
+### Longest Palindromic Subsequence
+#### https://leetcode.com/problems/longest-palindromic-subsequence/
+
+```
+class Solution {
+public:
+    int dp[1005][1005];
+    string a;
+    int func(int i, int j){
+        if(i > j)   return 0;
+        if(i == j)  return 1;
+        if(dp[i][j] != -1)  return dp[i][j];
+        if(a[i] == a[j])    return dp[i][j] = 2 + func(i+1, j-1);
+        return dp[i][j] = max(func(i+1, j), func(i, j-1));
+    }
+    int longestPalindromeSubseq(string s) {
+        a = s;
+        memset(dp, -1, sizeof(dp));
+        return func(0, s.size()-1);
+    }
+};
+```
