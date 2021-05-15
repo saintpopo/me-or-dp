@@ -579,3 +579,52 @@ public:
     }
 };
 ```
+
+### Minimum Insertion Steps to Make a String Palindrome
+
+#### Problem - https://leetcode.com/problems/minimum-insertion-steps-to-make-a-string-palindrome/
+
+```
+class Solution {
+public:
+    int dp[1000][1000];
+    string a;
+    int lps_length(int i, int j){
+        if(i > j)   return 0;
+        if(i == j)  return 1;
+        if(dp[i][j] != -1)  return dp[i][j];
+        if(a[i] == a[j])    return dp[i][j] = 2 + lps_length(i+1, j-1);
+        return dp[i][j] = max(lps_length(i+1, j), lps_length(i, j-1));
+    }
+    int minInsertions(string s) {
+        memset(dp, -1, sizeof(dp));
+        a = s;
+        int length = s.size();
+        return length - lps_length(0, length-1);
+    }
+};
+```
+
+### Max Dot Product of Two Subsequences
+
+#### Problem - https://leetcode.com/problems/max-dot-product-of-two-subsequences/
+
+```
+class Solution {
+public:
+    int dp[1005][1005];
+    int max_dp(int i, int j, vector < int > &a, vector < int > &b){
+        if(i < 0 || j < 0)  return INT_MIN;
+        if(dp[i][j] != -1) return dp[i][j];
+        int A = a[i]*b[j] + max(0, max_dp(i-1, j-1, a, b));
+        int B = max_dp(i-1, j, a, b);
+        int C = max_dp(i, j-1, a, b);
+        int D = max_dp(i-1, j-1, a, b);
+        return dp[i][j] = max(D, max(A, max(B, C)));
+    }
+    int maxDotProduct(vector<int>& nums1, vector<int>& nums2) {
+        memset(dp, -1, sizeof(dp));
+        return max_dp(nums1.size()-1, nums2.size()-1, nums1, nums2);
+    }
+};
+```
